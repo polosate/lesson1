@@ -10,7 +10,6 @@ def get_answers(question, answers):
 	for char in question:
 		if char in "?.!/;:":
 			question = question.replace(char, '')
-    # default_answer = 'Сам ты ' + question
 	return answers.get(question, 'Не понимаю тебя-(')
 
 def ask_user(answers):
