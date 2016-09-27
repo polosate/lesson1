@@ -5,8 +5,7 @@ answers = {
 }
 
 def get_answers(question, answers):
-    question = question.lower()
-    question = question.strip()
+    question = question.lower().strip()
     for char in question:
         if char in "?.!/;:":
             question = question.replace(char, '')
