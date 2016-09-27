@@ -1,12 +1,16 @@
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from answers import answers, get_answers
 
 def start(bot, update):
 	print("Вызван /start")
-	bot.sendMessage(update.message.chat_id, text='Привет! Я бот, который помогает учить Python!')
+	bot.sendMessage(update.message.chat_id, text="Привет! Я бот, который помогает учить Python!")
 
 def talk_to_me(bot, update):
 	print('Пришло сообщение: %s' % update.message.text)
-	bot.sendMessage(update.message.chat_id, text=update.message.text)
+	bot.sendMessage(update.message.chat_id, text=get_answers(update.message.text, answers))
 
 def run_bot():
 	updater = Updater("295434127:AAE60azMR4b0nashTLGai9DR9GNrjA8UQu0")
@@ -20,4 +24,3 @@ def run_bot():
 
 if __name__ == "__main__":
 	run_bot()
-
