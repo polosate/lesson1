@@ -1,16 +1,17 @@
 answers = {
-	'привет': 'И тебе привет!',
-	'как дела': 'Лучше всех!',
-	'пока': 'Увидимся!'
+    'привет': 'И тебе привет!',
+    'как дела': 'Лучше всех!',
+    'пока': 'Увидимся!'
 }
 
 def get_answers(question, answers):
-	question = question.lower()
-	question = question.strip()
-	for char in question:
-		if char in "?.!/;:":
-			question = question.replace(char, '')
-	return answers.get(question, 'Не понимаю тебя-(')
+    question = question.lower()
+    question = question.strip()
+    for char in question:
+        if char in "?.!/;:":
+            question = question.replace(char, '')
+    default_answer = "Сам ты %s" % question
+    return answers.get(question, default_answer)
 
 def ask_user(answers):
     while True:
