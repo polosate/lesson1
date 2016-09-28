@@ -1,3 +1,5 @@
+from googlesearch import googlesearch
+
 answers = {
     'привет': 'И тебе привет!',
     'как дела': 'Лучше всех!',
@@ -6,11 +8,30 @@ answers = {
 
 def get_answers(question, answers):
     question = question.lower().strip()
-    for char in question:
-        if char in "?.!/;:":
-            question = question.replace(char, '')
-    default_answer = "Сам ты %s" % question
-    return answers.get(question, default_answer)
+
+
+
+
+
+
+
+    question_without_punctuation = question
+    
+    for char in question_without_punctuation:
+        if char in "?.!/;:()*%\"\'":
+            question_without_punctuation = question_without_punctuation.replace(char, '')
+
+    if question_without_punctuation == '':
+        return "Да тут одни знаки пунктуации! Пиши словами!"
+    
+    if question_without_punctuation not in answers:
+        if question[-1] == "?":
+            return("А почему ви спгашиваете?")
+        else:
+            return googlesearch(question)
+    else:
+        return answers.get(question_without_punctuation)
+>>>>>>> c35c9598d2c8978e465f31b6b4c1e76f743bd407
 
 def ask_user(answers):
     while True:
