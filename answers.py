@@ -9,8 +9,11 @@ def get_answers(question, answers):
     question_without_punctuation = question
     
     for char in question_without_punctuation:
-        if char in "?.!/;:()":
+        if char in "?.!/;:()*%\"\'":
             question_without_punctuation = question_without_punctuation.replace(char, '')
+
+    if question_without_punctuation == '':
+        return "Да тут одни знаки пунктуации! Пиши словами!"
     
     if question_without_punctuation not in answers:
         if question[-1] == "?":
