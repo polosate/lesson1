@@ -1,3 +1,5 @@
+from googlesearch import googlesearch
+
 answers = {
     'привет': 'И тебе привет!',
     'как дела': 'Лучше всех!',
@@ -19,7 +21,7 @@ def get_answers(question, answers):
         if question[-1] == "?":
             return("А почему ви спгашиваете?")
         else:
-            return "Сам ты %s" % question_without_punctuation
+            return googlesearch(question)
     else:
         return answers.get(question_without_punctuation)
 
