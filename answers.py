@@ -31,7 +31,7 @@ def get_answers(question, answers):
             return googlesearch(question)
     else:
         return answers.get(question_without_punctuation)
->>>>>>> c35c9598d2c8978e465f31b6b4c1e76f743bd407
+
 
 def ask_user(answers):
     while True:
