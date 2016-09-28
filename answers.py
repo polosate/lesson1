@@ -6,11 +6,19 @@ answers = {
 
 def get_answers(question, answers):
     question = question.lower().strip()
-    for char in question:
-        if char in "?.!/;:":
-            question = question.replace(char, '')
-    default_answer = "Сам ты %s" % question
-    return answers.get(question, default_answer)
+    question_without_punctuation = question
+    
+    for char in question_without_punctuation:
+        if char in "?.!/;:()":
+            question_without_punctuation = question_without_punctuation.replace(char, '')
+    
+    if question_without_punctuation not in answers:
+        if question[-1] == "?":
+            return("А почему ви спгашиваете?")
+        else:
+            return "Сам ты %s" % question_without_punctuation
+    else:
+        return answers.get(question_without_punctuation)
 
 def ask_user(answers):
     while True:
