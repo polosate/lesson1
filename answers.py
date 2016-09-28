@@ -8,13 +8,6 @@ answers = {
 
 def get_answers(question, answers):
     question = question.lower().strip()
-
-
-
-
-
-
-
     question_without_punctuation = question
     
     for char in question_without_punctuation:
