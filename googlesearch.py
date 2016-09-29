@@ -18,7 +18,7 @@ def googlesearch(query):
     	title = result_json ['results'][0]['titleNoFormatting']
     	url = result_json ['results'][0]['unescapedUrl']
     	return (title + '; ' + url)
-    except IndexError, KeyError:
+    except (IndexError, KeyError):
     	return "Даже гугл этого не знает!"
     
     
