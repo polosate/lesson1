@@ -1,6 +1,6 @@
 import requests   
 import urllib   
-import json as m_json     
+import json     
 
 link = "https://www.googleapis.com/customsearch/v1element?key=AIzaSyCVAXiUzRYsML1Pv6RwSG1gunmMikTzQqY&rsz=filtered_cse&num=10\
 &hl=en&prettyPrint=false&source=gcsc&gss=.ru&sig=aaf08f6785d79163717330afd4116c8f\
@@ -12,13 +12,13 @@ def googlesearch(query):
                                                                                                                                                                                     
     r = requests.get(link, params=payload) 
 
-    json = m_json.loads ( r.text )
+    result_json = json.loads ( r.text )
     # print(json)
     try:
-    	title = json ['results'][0]['titleNoFormatting']
-    	url = json ['results'][0]['unescapedUrl']
+    	title = result_json ['results'][0]['titleNoFormatting']
+    	url = result_json ['results'][0]['unescapedUrl']
     	return (title + '; ' + url)
-    except IndexError:
+    except IndexError, KeyError:
     	return "Даже гугл этого не знает!"
     
     
