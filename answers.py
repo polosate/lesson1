@@ -1,4 +1,5 @@
 from googlesearch import googlesearch
+from upyachka import upyachka_slang
 
 answers = {
     'привет': 'И тебе привет!',
@@ -14,16 +15,19 @@ def get_answers(question, answers):
         if char in "?.!/;:()*%\"\'":
             question_without_punctuation = question_without_punctuation.replace(char, '')
 
-    if question_without_punctuation == '':
-        return "Да тут одни знаки пунктуации! Пиши словами!"
-    
-    if question_without_punctuation not in answers:
-        if question[-1] == "?":
-            return("А почему ви спгашиваете?")
+    if not upyachka_slang(question_without_punctuation):
+        if question_without_punctuation == '':
+            return "Да тут одни знаки пунктуации! Пиши словами!"
+        
+        if question_without_punctuation not in answers:
+            if question[-1] == "?":
+                return("А почему ви спгашиваете?")
+            else:
+                return googlesearch(question)
         else:
-            return googlesearch(question)
+            return answers.get(question_without_punctuation)
     else:
-        return answers.get(question_without_punctuation)
+        return upyachka_slang(question_without_punctuation)
 
 
 def ask_user(answers):
