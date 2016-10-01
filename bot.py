@@ -30,6 +30,12 @@ def game(bot, update):
 	print("Вызван /game")
 	bot.sendMessage(update.message.chat_id, text="Поиграем в города. Начинай.")
 
+def stopgame(bot, update):
+	global game_flag
+	game_flag = False
+	print("Вызван /stopgame")
+	bot.sendMessage(update.message.chat_id, text="Стоп игра.")
+
 
 def run_bot():
 	updater = Updater("295434127:AAE60azMR4b0nashTLGai9DR9GNrjA8UQu0")
@@ -38,6 +44,7 @@ def run_bot():
 	dp.add_handler(CommandHandler("start", start))
 	dp.add_handler(CommandHandler("time", time))
 	dp.add_handler(CommandHandler("game", game))
+	dp.add_handler(CommandHandler("stopgame", stopgame))
 	dp.add_handler(MessageHandler([Filters.text], talk_to_me))
 
 	updater.start_polling()
