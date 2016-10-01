@@ -5,6 +5,8 @@ from answers import answers, get_answers
 from cities import game as m_game
 import cities
 import datetime
+from countwords import countwords
+from calc import calc as m_calc
 game_flag = False
 
 def start(bot, update):
@@ -35,6 +37,24 @@ def stopgame(bot, update):
 	game_flag = False
 	print("Вызван /stopgame")
 	bot.sendMessage(update.message.chat_id, text="Стоп игра.")
+	cities.already_used_city = list()
+
+def count(bot, update):
+	count = str(countwords(update.message.text))
+	if count[-1] == "1":
+		suffix = "о"
+	elif count[-1] in ("234"):
+		suffix = "a"
+	else:
+		suffix = ""
+	answer = "В этой фразе {} слов{}.".format(count, suffix)
+	bot.sendMessage(update.message.chat_id, text=answer)
+
+def calc(bot, update):
+	expr = update.message.text
+	expr = expr.replace("/calc", "")
+	print(expr)
+	bot.sendMessage(update.message.chat_id, text=m_calc(expr))
 
 
 def run_bot():
@@ -45,6 +65,8 @@ def run_bot():
 	dp.add_handler(CommandHandler("time", time))
 	dp.add_handler(CommandHandler("game", game))
 	dp.add_handler(CommandHandler("stopgame", stopgame))
+	dp.add_handler(CommandHandler("count", count))
+	dp.add_handler(CommandHandler("calc", calc))
 	dp.add_handler(MessageHandler([Filters.text], talk_to_me))
 
 	updater.start_polling()
