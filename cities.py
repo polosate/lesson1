@@ -33,7 +33,7 @@ def bot_game():
 		already_used_city.append(bot_city)
 		available_cities = list(ac for ac in list(set(ru_cities) - set(already_used_city)) if ac[0] == get_last_symbol_of_last_city.upper())
 		if len(available_cities) == 0:
-			return ("Я выиграл")
+			return ("{}. Я выиграл".format(bot_city))
 		else:
 			return bot_city
 
