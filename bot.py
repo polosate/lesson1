@@ -7,6 +7,7 @@ import cities
 import datetime
 from countwords import countwords
 from calc import calc as m_calc
+from wordscalc import wordscalc as m_wordscalc
 game_flag = False
 
 def start(bot, update):
@@ -56,6 +57,12 @@ def calc(bot, update):
 	print(expr)
 	bot.sendMessage(update.message.chat_id, text=m_calc(expr))
 
+def wordscalc(bot, update):
+	expr = update.message.text
+	expr = expr.replace("/wordscalc", "")
+	print(expr)
+	bot.sendMessage(update.message.chat_id, text=m_wordscalc(expr))
+
 
 def run_bot():
 	updater = Updater("295434127:AAE60azMR4b0nashTLGai9DR9GNrjA8UQu0")
@@ -67,6 +74,7 @@ def run_bot():
 	dp.add_handler(CommandHandler("stopgame", stopgame))
 	dp.add_handler(CommandHandler("count", count))
 	dp.add_handler(CommandHandler("calc", calc))
+	dp.add_handler(CommandHandler("wordscalc", wordscalc))
 	dp.add_handler(MessageHandler([Filters.text], talk_to_me))
 
 	updater.start_polling()
